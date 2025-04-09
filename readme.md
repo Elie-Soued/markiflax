@@ -44,4 +44,4 @@ markiflex
 ### Contribute
 
 
-If you would like to contribute to this project the repo is here: 
+If you would like to contribute to this project the repo is here: https://github.com/Elie-Soued/markiflex
