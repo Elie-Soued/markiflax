@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Page | md converter express</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+
+    <!-- Showdown for Markdown conversion -->
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      #html_converted {
+        font-size: 1.1rem;
+      }
+      pre {
+        background-color: #eee;
+        padding: 1em;
+        border-radius: 0.5rem;
+      }
+      code {
+        font-family: monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container my-5">
+      <div class="mb-4 text-end">
+        <a href="/" class="home-icon" title="Back to Home">🏠</a>
+      </div>
+      <!-- Hidden raw markdown -->
+      <div id="markdown_container" style="display: none"><%- content %></div>
+
+      <!-- Converted HTML will appear here -->
+      <div id="html_converted" class="bg-white p-4 shadow rounded"></div>
+    </div>
+
+    <script>
+      window.addEventListener("load", () => {
+        const converter = new showdown.Converter({
+          tables: true,
+          simplifiedAutoLink: true,
+          strikethrough: true,
+          tasklists: true,
+        });
+        const markdown =
+          document.getElementById("markdown_container").innerText;
+        const htmlContent = converter.makeHtml(markdown);
+        document.getElementById("html_converted").innerHTML = htmlContent;
+      });
+    </script>
+
+    <!-- Optional Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-V0wBK8cR6d95IAXoZuJ5uvh1DBT6L5xTY0+hslrEcyND6CBLbOrJ1HmcN4r67nmp"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
