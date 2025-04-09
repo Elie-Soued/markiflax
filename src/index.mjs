@@ -16,4 +16,4 @@ app.use("/", routes);
 
 app.get("/", (_, res) => res.send("Hello World"));
 
-app.listen(3000, () => console.log("Markiflex is running on port 3000"));
+app.listen(3000, () => console.log("Markiflax is running on port 3000"));

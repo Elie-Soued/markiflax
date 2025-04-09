@@ -1,9 +1,9 @@
 {
-  "name": "markiflex",
+  "name": "markiflax",
   "version": "1.0.0",
   "main": "index.mjs",
   "bin": {
-    "markiflex": "src/index.mjs"
+    "markiflax": "src/index.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

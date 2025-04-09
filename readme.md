@@ -1,9 +1,9 @@
 ### Installation
 
-Run the following command to install markiflex
+Run the following command to install markiflax
 
 ```bash
-npm install markiflex
+npm install markiflax
 
 ```
 
@@ -36,7 +36,7 @@ To use the application you need to do the following:
 
 ```bash
 
-markiflex
+markiflax
 
 ```
 
@@ -44,4 +44,4 @@ markiflex
 ### Contribute
 
 
-If you would like to contribute to this project the repo is here: https://github.com/Elie-Soued/markiflex
+If you would like to contribute to this project the repo is here: https://github.com/Elie-Soued/markiflax
