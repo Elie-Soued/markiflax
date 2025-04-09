@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.mjs",
   "bin": {
-    "markify": "src/index.mjs"
+    "markiflex": "src/index.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
