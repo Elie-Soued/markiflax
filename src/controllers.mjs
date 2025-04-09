@@ -22,13 +22,19 @@ const {
 const renderMarkdown = async (req, res) => {
   const name = req.params.name;
   const mdFile = req.routes[name];
+  const userAgent = req.headers["user-agent"] || "";
 
   if (mdFile) {
     const fullPath = path.join(process.cwd(), mdFile);
 
     try {
       const content = await fs.readFile(fullPath, "utf8");
-      res.render("markdown", { content });
+
+      if (userAgent.toLowerCase().includes("curl")) {
+        res.type("text/plain").send(content);
+      } else {
+        res.render("markdown", { content });
+      }
     } catch (err) {
       console.error("Error reading Markdown file:", err);
       res.status(500).sendFile(path.join(__dirname, "/html/500error.html"));
@@ -40,18 +46,23 @@ const renderMarkdown = async (req, res) => {
 
 const renderLandingPage = (req, res) => {
   const routes = Object.keys(req.routes);
-  res.render("index", {
-    routes,
-    title,
-    undertitle,
-    paragraph,
-    footer,
-    show_table_of_content,
-    show_footer,
-    show_paragraph,
-    show_title,
-    show_undertitle,
-  });
+  const userAgent = req.headers["user-agent"] || "";
+  if (userAgent.toLowerCase().includes("curl")) {
+    res.render("tableofcontent", { routes });
+  } else {
+    res.render("index", {
+      routes,
+      title,
+      undertitle,
+      paragraph,
+      footer,
+      show_table_of_content,
+      show_footer,
+      show_paragraph,
+      show_title,
+      show_undertitle,
+    });
+  }
 };
 
 const createRoute = async (req, _, next) => {
