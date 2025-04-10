@@ -1,9 +1,22 @@
+### Introduction
+
+`Markiflax` allows you to create a fully functioning website just by writing [Markdown](https://www.markdownguide.org/) files.  
+The app uses the powerful `Showdown` package to convert Markdown into clean HTML,making it perfect for blogs, notes, documentation, and more.  
+It is configurable and the user can choose to edit the landing page as needed by providing a config.json file.
+        
+        
 ### Installation
 
 Run the following command to install markiflax
 
 ```bash
-npm install markiflax
+npm install -g markiflax
+
+```
+On macOS/Linux:
+
+```bash
+sudo npm install -g markiflax
 
 ```
 
