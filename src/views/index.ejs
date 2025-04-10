@@ -14,20 +14,20 @@
   <body class="bg-light">
     <div class="container py-5">
       <div class="text-center mb-5">
-        <% if (show_title == 'true') { %>
+        <% if (show_title) { %>
         <h1 class="display-4"><%= title %></h1>
-        <% } %> <% if (show_undertitle == 'true') { %>
+        <% } %> <% if (show_undertitle) { %>
         <p class="lead"><%= undertitle %></p>
         <% } %>
       </div>
 
       <div class="mb-4">
-        <% if (show_paragraph == 'true') { %>
+        <% if (show_paragraph) { %>
         <p><%= paragraph %></p>
         <% } %>
       </div>
 
-      <% if (show_table_of_content == 'true') { %>
+      <% if (show_table_of_content) { %>
       <nav class="mb-5">
         <h2 class="h5 mb-3">Table of content</h2>
         <ul class="list-group">
@@ -38,7 +38,7 @@
           <% } %> <% }); %>
         </ul>
       </nav>
-      <% } %> <% if (show_footer == 'true') { %>
+      <% } %> <% if (show_footer) { %>
       <div class="text-center">
         <p class="text-muted"><%= footer %></p>
       </div>
