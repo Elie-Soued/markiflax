@@ -44,7 +44,10 @@ To use the application you need to do the following:
   }
 ```
 
-4. Run the following command
+
+4. If you want to add images to your application, place them at the root level of your application like this /public/images/your_image.png.  
+
+5. Run the following command
 
 ```bash
 
