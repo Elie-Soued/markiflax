@@ -31,19 +31,27 @@
       code {
         font-family: monospace;
       }
+
+      .small_image {
+        width: 400px;
+        max-width: 75%;
+      }
+
+      .large_image {
+        width: 100%;
+        height: auto;
+      }
     </style>
   </head>
 
-  <body>
-    <div class="container my-5">
-      <div class="mb-4 text-end">
-        <a href="/" class="home-icon" title="Back to Home">🏠</a>
-      </div>
+  <body class="d-flex justify-content-center">
+    <div class="container" style="max-width: 1200px">
       <!-- Hidden raw markdown -->
       <div id="markdown_container" style="display: none"><%- content %></div>
 
       <!-- Converted HTML will appear here -->
       <div id="html_converted" class="bg-white p-4 shadow rounded"></div>
+      <a href="/" class="btn btn-primary mt-3 mb-3">Back</a>
     </div>
 
     <script>
@@ -56,7 +64,19 @@
         });
         const markdown =
           document.getElementById("markdown_container").innerText;
-        const htmlContent = converter.makeHtml(markdown);
+        let htmlContent = converter.makeHtml(markdown);
+
+        htmlContent = htmlContent.replace(
+          /<img src="([^"]+)" alt="([^"]+)"(.*?)\/>/g,
+          (match, url, alt) => {
+            if (alt.includes("small")) {
+              return `<img src="${url}"  class="small_image" />`;
+            } else if (alt.includes("large")) {
+              return `<img src="${url}"  class="large_image" />`;
+            }
+            return match;
+          }
+        );
         document.getElementById("html_converted").innerHTML = htmlContent;
       });
     </script>
