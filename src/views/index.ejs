@@ -33,9 +33,7 @@
         <ul class="list-group">
           <% routes.forEach(route => { %> <% if (route !== '/') { %>
           <li class="list-group-item">
-            <a style="text-decoration: none" href="<%= route %>"
-              ><%= route %></a
-            >
+            <a class="nav-link" href="<%= route %>"><%= route %></a>
           </li>
           <% } %> <% }); %>
         </ul>
