@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Markiflax</title>
+    <title>FlexyNotes</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -28,19 +28,49 @@
       </div>
 
       <% if (show_table_of_content) { %>
-      <nav class="mb-5">
-        <h2 class="h5 mb-3">Table of content</h2>
-        <ul class="list-group">
-          <% routes.forEach(route => { %> <% if (route !== '/') { %>
-          <li class="list-group-item">
-            <a class="nav-link" href="<%= route %>"><%= route %></a>
-          </li>
+
+      <table class="table table-striped border">
+        <thead class="border-light">
+          Table of content
+        </thead>
+        <tbody>
+          <% routes.slice(offset, offset + limit).forEach(route => { %> <% if
+          (route !== '/') { %>
+          <tr>
+            <td>
+              <a class="nav-link" href="<%= route %>"><%= route %></a>
+            </td>
+          </tr>
           <% } %> <% }); %>
+        </tbody>
+      </table>
+
+      <% if (routes.length > limit) { %>
+      <nav
+        class="d-flex justify-content-center"
+        aria-label="Page navigation example"
+      >
+        <ul class="pagination">
+          <li class="page-item <%= offset === 0 ? 'disabled' : '' %>">
+            <a class="page-link" href="?offset=<%= offset - limit %> %>"
+              >Previous</a
+            >
+          </li>
+
+          <li
+            class="page-item <%= offset + limit >= limit ? 'disabled' : '' %>"
+          ></li>
+
+          <li
+            class="page-item <%= offset + limit >= routes.length ? 'disabled' : '' %>"
+          >
+            <a class="page-link" href="?offset=<%= offset + limit %>">Next</a>
+          </li>
         </ul>
       </nav>
-      <% } %> <% if (show_footer) { %>
+      <% }; %> <% } %> <% if (show_footer) { %>
       <div class="text-center">
-        <p class="text-muted"><%= footer %></p>
+        <p class="text-muted"><%= footer %> <a href=""></a></p>
       </div>
       <% } %>
     </div>

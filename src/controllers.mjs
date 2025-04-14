@@ -11,6 +11,8 @@ const {
   title,
   undertitle,
   paragraph,
+  paginationOffsetConfig,
+  paginationlimitConfig,
   footer,
   show_table_of_content,
   show_footer,
@@ -47,11 +49,16 @@ const renderMarkdown = async (req, res) => {
 const renderLandingPage = (req, res) => {
   const routes = Object.keys(req.routes);
   const userAgent = req.headers["user-agent"] || "";
+
+  const offset = req.offset || paginationOffsetConfig;
+
   if (userAgent.toLowerCase().includes("curl")) {
     res.render("tableofcontent", { routes });
   } else {
     res.render("index", {
       routes,
+      offset,
+      limit: paginationlimitConfig,
       title,
       undertitle,
       paragraph,
@@ -82,7 +89,7 @@ const createRoute = async (req, _, next) => {
   }
 
   req.routes = routes;
-
+  req.offset = Number(req.url?.split("=")[1]);
   next();
 };
 

@@ -40,7 +40,9 @@ To use the application you need to do the following:
     "show_footer": true,
     "show_paragraph":true,
     "show_title":true,
-    "show_undertitle":true
+    "show_undertitle":true,
+    "paginationOffsetConfig":0,
+    "paginationlimitConfig":5
   }
 ```
 
