@@ -1,13 +1,16 @@
 import express from "express";
 import {
-  renderMarkdown,
+  renderPage,
   renderLandingPage,
-  createRoute,
+  prepareContent,
+  renderSection,
 } from "./controllers.mjs";
 
 const router = express.Router();
 
-router.get("/", createRoute, renderLandingPage);
-router.get("/:name", createRoute, renderMarkdown);
+router.get("/", renderLandingPage);
+router.get("/favicon.ico", (_, res) => res.status(204).end());
+router.get("/:section", prepareContent, renderSection);
+router.get("/:section/:page", prepareContent, renderPage);
 
 export default router;

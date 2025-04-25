@@ -1,6 +1,6 @@
 {
   "name": "markiflax",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.mjs",
   "bin": {
     "markiflax": "src/index.mjs"
@@ -8,16 +8,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["markdown", "website", "convert", "html", "express"],
+  "keywords": [
+    "markdown",
+    "website",
+    "convert",
+    "html",
+    "express"
+  ],
   "author": "Elie Soueid",
   "license": "ISC",
   "description": "A markdown to website converter using Express and Showdown.",
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "nodemon": "^3.1.10",
     "showdown": "^2.1.0"
   },
   "engines": {
-  "node": ">=16.0.0"
-}
+    "node": ">=16.0.0"
+  }
 }

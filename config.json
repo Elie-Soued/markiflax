@@ -1,0 +1,14 @@
+{
+  "port": 3001,
+  "title": "💻  Computer Science",
+  "undertitle": "The never ending quest for knowledge",
+  "paragraph": "We all have our own ways of learning.\nI’ve realized that if I don’t create summaries, it’s only a matter of time before I forget what I spent so much time learning.\nThis site is my attempt to centralize everything I know about computer science.\nI hope it helps—wish me luck! :)",
+  "footer": "✨ This app was built with Markiflax",
+  "show_table_of_content": true,
+  "show_footer": true,
+  "show_paragraph":true,
+  "show_title":true,
+  "show_undertitle":true,
+  "paginationOffsetConfig":0,
+  "paginationlimitConfig":10
+}

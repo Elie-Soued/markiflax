@@ -21,13 +21,14 @@ const {
   show_undertitle,
 } = config;
 
-const renderMarkdown = async (req, res) => {
-  const name = req.params.name;
+const renderPage = async (req, res) => {
+  const name = req.params.page;
+  const section = req.section;
   const mdFile = req.routes[name];
   const userAgent = req.headers["user-agent"] || "";
 
   if (mdFile) {
-    const fullPath = path.join(process.cwd(), mdFile);
+    const fullPath = path.join(`${process.cwd()}/content/${section}`, mdFile);
 
     try {
       const content = await fs.readFile(fullPath, "utf8");
@@ -35,7 +36,7 @@ const renderMarkdown = async (req, res) => {
       if (userAgent.toLowerCase().includes("curl")) {
         res.type("text/plain").send(content);
       } else {
-        res.render("markdown", { content });
+        res.render("markdown", { content, section });
       }
     } catch (err) {
       console.error("Error reading Markdown file:", err);
@@ -46,8 +47,33 @@ const renderMarkdown = async (req, res) => {
   }
 };
 
-const renderLandingPage = (req, res) => {
+const renderLandingPage = async (_, res) => {
+  const path = `${cwd}/content`;
+  let content;
+
+  try {
+    content = await fs.readdir(path);
+  } catch (err) {
+    console.error("Error reading directory:", err);
+  }
+
+  res.render("index", {
+    title,
+    undertitle,
+    paragraph,
+    footer,
+    show_table_of_content,
+    show_footer,
+    show_paragraph,
+    show_title,
+    show_undertitle,
+    content,
+  });
+};
+
+const renderSection = (req, res) => {
   const routes = Object.keys(req.routes);
+  const section = req.section;
   const userAgent = req.headers["user-agent"] || "";
 
   const offset = req.offset || paginationOffsetConfig;
@@ -55,7 +81,7 @@ const renderLandingPage = (req, res) => {
   if (userAgent.toLowerCase().includes("curl")) {
     res.render("tableofcontent", { routes });
   } else {
-    res.render("index", {
+    res.render("section", {
       routes,
       offset,
       limit: paginationlimitConfig,
@@ -68,29 +94,33 @@ const renderLandingPage = (req, res) => {
       show_paragraph,
       show_title,
       show_undertitle,
+      section,
     });
   }
 };
 
-const createRoute = async (req, _, next) => {
+const prepareContent = async (req, _, next) => {
+  const sectionName = req.params.section;
+
   let routes = {};
 
   try {
-    const files = await fs.readdir(cwd);
+    const files = await fs.readdir(`${cwd}/content/${sectionName}`);
 
     files.forEach((file) => {
-      const [name, extension] = file.split(".");
-      if (extension === "md" && name !== "readme") {
-        routes[name] = `${file}`;
+      const [title, extension] = file?.split(".");
+      if (extension === "md") {
+        routes[title] = `${file}`;
       }
     });
   } catch (err) {
     console.error("Error reading directory:", err);
   }
 
+  req.section = sectionName;
   req.routes = routes;
   req.offset = Number(req.url?.split("=")[1]);
   next();
 };
 
-export { renderMarkdown, renderLandingPage, createRoute };
+export { renderPage, renderLandingPage, prepareContent, renderSection };

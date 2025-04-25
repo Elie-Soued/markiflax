@@ -20,6 +20,10 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static("public"));
 
+app.get("/back-button", (req, res) => {
+  res.sendFile(path.join(__dirname, "assets/images", "back.png"));
+});
+
 app.use("/", routes);
 
 app.get("/", (_, res) => res.send("Hello World"));

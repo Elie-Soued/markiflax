@@ -25,8 +25,9 @@ sudo npm install -g markiflax
 To use the application you need to do the following:
 
 1. Navigate to a directory where you would like to run the application.
-2. Create markdown files (don't forget to use the .md extension).
-3. Create a JSON file to define your website configuration. This is an example:
+2. Create a directory called "content" in which you can create sub-directories.  
+3. In the sub-directories, create markdown files (don't forget to use the .md extension).
+4. Create a JSON file to define your website configuration. This is an example:
 
 ```json
 
@@ -47,9 +48,9 @@ To use the application you need to do the following:
 ```
 
 
-4. If you want to add images to your application, place them at the root level of your application like this /public/images/your_image.png.  
+5. If you want to add images to your application, place them at the root level of your application like this /public/images/your_image.png.  
 
-5. Run the following command
+6. Run the following command
 
 ```bash
 

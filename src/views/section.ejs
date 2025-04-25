@@ -30,19 +30,50 @@
       <% if (show_table_of_content) { %>
 
       <table class="table table-striped border">
+        <thead class="border-light">
+          <%= section %>
+        </thead>
         <tbody>
-          <% content.forEach( cont => { %>
+          <% routes.slice(offset, offset + limit).forEach(route => { %> <% if
+          (route !== '/') { %>
           <tr>
             <td>
-              <a class="nav-link" href="/<%= cont %>"><%= cont %></a>
+              <a class="nav-link" href="<%= section %>/<%= route %>"
+                ><%= route %></a
+              >
             </td>
           </tr>
-          <% }); %>
+          <% } %> <% }); %>
         </tbody>
       </table>
-      <% } %> <% if (show_footer) { %>
+      <a href="/"> <img src="/back-button" width="30px" /></a>
+
+      <% if (routes.length > limit) { %>
+      <nav
+        class="d-flex justify-content-center"
+        aria-label="Page navigation example"
+      >
+        <ul class="pagination">
+          <li class="page-item <%= offset === 0 ? 'disabled' : '' %>">
+            <a class="page-link" href="?offset=<%= offset - limit %> %>"
+              >Previous</a
+            >
+          </li>
+
+          <li
+            class="page-item <%= offset + limit >= limit ? 'disabled' : '' %>"
+          ></li>
+
+          <li
+            class="page-item <%= offset + limit >= routes.length ? 'disabled' : '' %>"
+          >
+            <a class="page-link" href="?offset=<%= offset + limit %>">Next</a>
+          </li>
+        </ul>
+      </nav>
+      <% }; %> <% } %> <% if (show_footer) { %>
       <div class="text-center">
-        <p class="text-muted"><%= footer %> <a href=""></a></p>
+        <p class="text-muted"><%= footer %></p>
       </div>
       <% } %>
     </div>
