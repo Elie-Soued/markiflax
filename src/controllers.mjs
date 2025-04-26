@@ -14,11 +14,15 @@ const {
   paginationOffsetConfig,
   paginationlimitConfig,
   footer,
+  landingPagePicture_src,
+  backbuttonimage_src,
   show_table_of_content,
   show_footer,
   show_paragraph,
   show_title,
   show_undertitle,
+  show_landingpagepicture,
+  show_backbutton,
 } = config;
 
 const renderPage = async (req, res) => {
@@ -36,7 +40,12 @@ const renderPage = async (req, res) => {
       if (userAgent.toLowerCase().includes("curl")) {
         res.type("text/plain").send(content);
       } else {
-        res.render("markdown", { content, section });
+        res.render("markdown", {
+          content,
+          section,
+          backbuttonimage_src,
+          show_backbutton,
+        });
       }
     } catch (err) {
       console.error("Error reading Markdown file:", err);
@@ -68,6 +77,8 @@ const renderLandingPage = async (_, res) => {
     show_title,
     show_undertitle,
     content,
+    show_landingpagepicture,
+    landingPagePicture_src,
   });
 };
 
@@ -95,6 +106,8 @@ const renderSection = (req, res) => {
       show_title,
       show_undertitle,
       section,
+      backbuttonimage_src,
+      show_backbutton,
     });
   }
 };

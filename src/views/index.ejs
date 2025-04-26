@@ -40,7 +40,12 @@
           <% }); %>
         </tbody>
       </table>
-      <% } %> <% if (show_footer) { %>
+
+      <% if (show_landingpagepicture) { %>
+      <div style="display: flex; justify-content: center">
+        <img src="<%=landingPagePicture_src%>" style="width: 100%" />
+      </div>
+      <% } %> <% } %> <% if (show_footer) { %>
       <div class="text-center">
         <p class="text-muted"><%= footer %> <a href=""></a></p>
       </div>

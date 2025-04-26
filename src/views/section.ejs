@@ -46,7 +46,16 @@
           <% } %> <% }); %>
         </tbody>
       </table>
-      <a href="/"> <img src="/back-button" width="30px" /></a>
+
+
+      <% if (show_backbutton) { %>
+
+        <a href="/">
+          <img src="<%-backbuttonimage_src%>" width="30px"
+        /></a>
+  
+        <% } %>
+      </div>
 
       <% if (routes.length > limit) { %>
       <nav

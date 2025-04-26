@@ -52,7 +52,13 @@
       <!-- Converted HTML will appear here -->
       <div id="html_converted" class="bg-white p-4 shadow rounded"></div>
 
-      <a href="/<%= section %>"> <img src="/back-button" width="30px" /></a>
+      <% if (show_backbutton) { %>
+
+      <a href="/<%= section %>">
+        <img src="<%-backbuttonimage_src%>" width="30px"
+      /></a>
+
+      <% } %>
     </div>
 
     <script>
